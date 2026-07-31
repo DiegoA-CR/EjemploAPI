@@ -19,14 +19,15 @@ def getUno():
 @app.route('/productos/<string:productos_name>')
 def getproducto(productos_name):
     print(productos_name)
-    return('resivido')
+    return('resibido')
 
 @app.route('/dos/<string:producto_nombre>')
 def getDos(producto_nombre):
     productoEncontrado = [producto for producto in productos if producto['Nombre'] == producto_nombre]
-    if(len(productoEncontrado)> 0):
+    if len(productoEncontrado)> 0:
         return jsonify({"Producto": productoEncontrado[0]})
     return jsonify({"message": "The product no exist"})
+
 #actualizar lista de productos
 @app.route('/productos', methods = ['POST'])
 def agregaProducto():
@@ -39,11 +40,12 @@ def agregaProducto():
     }
     productos.append(new_product)
     return jsonify({"message": "El producto fue agragado exitosamente", "productos": productos})
+
 # editar valores de objeto 
 @app.route('/productos/<string:producto_nombre>', methods = ['PUT'])
 def editarProducto(producto_nombre):
     buscaProducto = [producto for producto in productos if producto['Nombre'] == producto_nombre]
-    if (len(buscaProducto) > 0):
+    if len(buscaProducto) > 0:
         buscaProducto[0]["Nombre"] = request.json["Nombre"],
         buscaProducto[0]["Precio"] = request.json["Precio"],
         buscaProducto[0]["Cantidad"] = request.json["Cantidad"]
@@ -53,6 +55,17 @@ def editarProducto(producto_nombre):
         })
     return jsonify({"message":"No se encuentra el producto"})
 
+# eliminar producto
+@app.route('/productos/<string:producto_nombre>', methods = ['DELETE'])
+def borraProducto(producto_nombre):
+    eliminaProducto = [producto for producto in productos if producto['Nombre'] == producto_nombre]
+    if len(eliminaProducto) > 0:
+        productos.remove(eliminaProducto[0])
+        return jsonify({
+            "message":"Producto Eliminado",
+            "Productos": productos
+        }) 
+    return jsonify({"message": "Producto no encontrado"})
 #----------------------------------------------
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
