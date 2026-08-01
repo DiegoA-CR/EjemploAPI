@@ -45,8 +45,10 @@ def agregaProducto():
 @app.route('/productos/<string:producto_nombre>', methods = ['PUT'])
 def editarProducto(producto_nombre):
     buscaProducto = [producto for producto in productos if producto['Nombre'] == producto_nombre]
-    if len(buscaProducto) > 0:
-        buscaProducto[0]["Nombre","Precio","Cantidad"] = request.json["Nombre","Precio","Cantidad"],
+    if (len(buscaProducto) > 0):
+        buscaProducto[0]["Nombre"] = request.json["Nombre"],
+        buscaProducto[0]["Precio"] = request.json["Precio"],
+        buscaProducto[0]["Cantidad"] = request.json["Cantidad"],
         return jsonify({
         "message": "Producto Actualizado",
         "producto": buscaProducto[0]
@@ -57,7 +59,7 @@ def editarProducto(producto_nombre):
 @app.route('/productos/<string:producto_nombre>', methods = ['DELETE'])
 def borraProducto(producto_nombre):
     eliminaProducto = [producto for producto in productos if producto['Nombre'] == producto_nombre]
-    if len(eliminaProducto) > 0:
+    if (len(eliminaProducto) > 0):
         productos.remove(eliminaProducto[0])
         return jsonify({
             "message":"Producto Eliminado",
@@ -68,7 +70,6 @@ def borraProducto(producto_nombre):
 #----------------------------------------------
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
-
 # guardar datos dentro de API
 #postman
 #insomnia
