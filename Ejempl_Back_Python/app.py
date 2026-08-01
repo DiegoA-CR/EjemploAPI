@@ -46,9 +46,7 @@ def agregaProducto():
 def editarProducto(producto_nombre):
     buscaProducto = [producto for producto in productos if producto['Nombre'] == producto_nombre]
     if len(buscaProducto) > 0:
-        buscaProducto[0]["Nombre"] = request.json["Nombre"],
-        buscaProducto[0]["Precio"] = request.json["Precio"],
-        buscaProducto[0]["Cantidad"] = request.json["Cantidad"]
+        buscaProducto[0]["Nombre","Precio","Cantidad"] = request.json["Nombre","Precio","Cantidad"],
         return jsonify({
         "message": "Producto Actualizado",
         "producto": buscaProducto[0]
@@ -66,6 +64,7 @@ def borraProducto(producto_nombre):
             "Productos": productos
         }) 
     return jsonify({"message": "Producto no encontrado"})
+
 #----------------------------------------------
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
