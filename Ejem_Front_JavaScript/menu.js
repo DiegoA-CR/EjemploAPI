@@ -2,7 +2,7 @@
 const apiURL = "https://rickandmortyapi.com/api/character"; // llamada a la API
 
 function creaCard(character) {
-  const cardsContainer = document.querySelector("#cards-container");
+  const cardsContainer = document.querySelector("#container");
   const { name, status, image, species, gender } = character;
 
   //titulo
@@ -37,6 +37,7 @@ function creaCard(character) {
   const imageCharacter = document.createElement("img");
   imageCharacter.src = image;
   imageCharacter.width = 300;
+  imageCharacter.className = "image-character";
 
   const Card = document.createElement("div"); // creamos el contenedor
   Card.appendChild(nombre); // Le agrgamos el titulo
@@ -44,7 +45,8 @@ function creaCard(character) {
   Card.appendChild(especie);
   Card.appendChild(genero);
   Card.appendChild(characterStatus); // y el estado
-  Card.className = "card_stylie";
+  Card.className = "card-style";
+  Card.id = "card-IDstyle";
 
   //unimos todo
   cardsContainer.appendChild(Card);
