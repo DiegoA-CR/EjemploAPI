@@ -9,18 +9,22 @@ function creaCard(character) {
 
   const nombre = document.createElement("h2");
   nombre.textContent = name;
+  nombre.className = "nombre-personaje";
+  nombre.style.color = "#000";
 
   const especie = document.createElement("h4");
   especie.textContent = species;
 
   if (species != "Human") {
-    especie.className = "otra_especie";
+    especie.className = "otra-especie";
     especie.style.color = "red";
+  } else {
+    especie.style.color = "#654";
   }
 
   const genero = document.createElement("h5");
   genero.textContent = gender;
-  genero.className = "genero_personaje";
+  genero.className = "genero-personaje";
   // caracteristicas
 
   const characterStatus = document.createElement("p");
@@ -36,7 +40,7 @@ function creaCard(character) {
 
   const imageCharacter = document.createElement("img");
   imageCharacter.src = image;
-  imageCharacter.width = 300;
+  imageCharacter.width = 250;
   imageCharacter.className = "image-character";
 
   const Card = document.createElement("div"); // creamos el contenedor
