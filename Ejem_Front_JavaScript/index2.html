@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Scroll Progress</title>
+
+    <style>
+      body {
+        margin: 0;
+        min-height: 300vh; /*para hacer la pagina 3 veces mas grande*/
+      }
+
+      #progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 10px;
+
+        background: #0b0;
+
+        z-index: 1000;
+
+        transform-origin: 0 50%;
+
+        animation: barraProgreso 1ms linear;
+        animation-timeline: scroll(root block);
+      }
+
+      @keyframes barraProgreso {
+        from {
+          transform: scaleX(0);
+        }
+
+        to {
+          transform: scaleX(1);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="progress"></div>
+
+    <h1>Scroll</h1>
+
+    <p>Baja por la página.</p>
+  </body>
+</html>
+<!-- Prueba para verificar el funcionamiento de animation-timeline -->
